@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#EEEEEE"
+android:gravity="center"
+android:orientation="vertical"
+android:padding="10dp">
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/enterMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/startTimer"
+        android:hint="enter minutes"
+        android:padding="10dp"
+        android:maxLength="4"
+        android:inputType="number"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textColorHint="#9E9E9E"
+        />
+
+    <Button
+        android:id="@+id/startTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="#009688"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:text="start timer" />
+</RelativeLayout>
+
+    <TextView
+        android:id="@+id/countdownText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="@string/timer"
+        android:textColor="#FFFFFF"
+        android:textSize="0sp"
+         />
+
+    <Button
+        android:id="@+id/resetTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#009688"
+        android:padding="10dp"
+        android:text="reset timer"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+</LinearLayout>
