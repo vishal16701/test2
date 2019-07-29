@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BananaFragment">
+    tools:context=".BananaFragment"
+    android:background="@color/colorBackground">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view"
@@ -20,16 +21,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/my_recycler_view"
-        android:layout_alignBottom="@+id/my_recycler_view"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="619dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginStart="303dp"
+        android:layout_marginTop="611dp"
+        android:layout_marginEnd="52dp"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add" />

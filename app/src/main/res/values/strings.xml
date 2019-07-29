@@ -10,6 +10,8 @@
     <string name="banana">Banana</string>
     <string name="grapes">Grapes</string>
     <string name="orange">Orange</string>
+    <string name="hint_minute">Minute</string>
+    <string name="message_minutes">Please Enter Minutes...</string>
     <string name="title_alarm_name">title alarm name</string>
     <string name="title_vibrate">title vibrate</string>
     <string name="title_none">title none</string>
@@ -21,5 +23,12 @@
     <string name="stop_timer">Stop Timer</string>
     <string name="reset_timer">Reset Timer</string>
     <string name="timer">00:00:00</string>
-    </resources>
+    <string name="save_lap">Save Lap</string>
+    <string name="reset">Reset</string>
+    <string name="pause">Pause</string>
+    <string name="start">Start</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="_00_01_00">00:01:00</string>
+    <string name="_1">1</string>
+</resources>
 

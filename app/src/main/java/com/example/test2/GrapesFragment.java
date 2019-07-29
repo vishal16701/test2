@@ -2,14 +2,15 @@ package com.example.test2;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.os.CountDownTimer;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,88 +18,193 @@ import java.util.concurrent.TimeUnit;
 
 public class GrapesFragment extends Fragment implements View.OnClickListener {
 
-    private  TextView countdownTimerText;
-    private  EditText minutes;
-    private  Button startTimer, resetTimer;
-    private  CountDownTimer countDownTimer;
 
+    private long timeCountInMilliSeconds = 60000;
+
+    private enum TimerStatus {
+        STARTED,
+        STOPPED
+    }
     public GrapesFragment() {
-        // Required empty public constructor
-    }
+    // Required empty public constructor
+     }
+    private TimerStatus timerStatus = TimerStatus.STOPPED;
 
-    private void setListeners() {
-        startTimer.setOnClickListener(this);
-        resetTimer.setOnClickListener(this);
-    }
+    private ProgressBar progressBarCircle;
+    private EditText editTextMinute;
+    private TextView textViewTime;
+    private ImageView imageViewReset;
+    private ImageView imageViewStartStop;
+    private CountDownTimer countDownTimer;
+
+
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.startTimer:
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-                if (countDownTimer == null) {
-                    String getMinutes = minutes.getText().toString();
 
-                    if (!getMinutes.equals("") && getMinutes.length() > 0) {
-                        int noOfMinutes = Integer.parseInt(getMinutes) * 60 * 1000;
+        // method call to initialize the views
+        initViews();
+        // method call to initialize the listeners
+        initListeners();
 
-                        startTimer(noOfMinutes);
-                        startTimer.setText(getString(R.string.stop_timer));
 
-                    } else
-                        Toast.makeText(getContext(), "Please enter no. of Minutes.", Toast.LENGTH_SHORT).show();
-                } else {
+    }
 
-                    stopCountdown();
-                    startTimer.setText(getString(R.string.start_timer));
-                }
+
+    private void initViews() {
+
+    }
+
+
+    private void initListeners() {
+        imageViewReset.setOnClickListener(this);
+        imageViewStartStop.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.imageViewReset:
+                reset();
                 break;
-            case R.id.resetTimer:
-                stopCountdown();
-                startTimer.setText(getString(R.string.start_timer));
-                countdownTimerText.setText(getString(R.string.timer));
+            case R.id.imageViewStartStop:
+                startStop();
                 break;
         }
     }
 
-    private void stopCountdown() {
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-            countDownTimer = null;
-        }
+
+    private void reset() {
+        stopCountDownTimer();
+        startCountDownTimer();
     }
 
-    private void startTimer(int noOfMinutes) {
-        countDownTimer = new CountDownTimer(noOfMinutes, 1000) {
+
+
+    private void startStop() {
+        if (timerStatus == TimerStatus.STOPPED) {
+
+
+            setTimerValues();
+
+            setProgressBarValues();
+
+            imageViewReset.setVisibility(View.VISIBLE);
+
+            imageViewStartStop.setImageResource(R.drawable.icon_stop);
+
+            editTextMinute.setEnabled(false);
+
+            timerStatus = TimerStatus.STARTED;
+
+            startCountDownTimer();
+
+        } else {
+
+
+            imageViewReset.setVisibility(View.GONE);
+
+            imageViewStartStop.setImageResource(R.drawable.icon_start);
+
+            editTextMinute.setEnabled(true);
+
+            timerStatus = TimerStatus.STOPPED;
+            stopCountDownTimer();
+
+        }
+
+    }
+
+
+    private void setTimerValues() {
+        int time = 0;
+        if (!editTextMinute.getText().toString().isEmpty()) {
+
+            time = Integer.parseInt(editTextMinute.getText().toString().trim());
+        } else {
+
+            Toast.makeText(getContext(), getString(R.string.message_minutes), Toast.LENGTH_LONG).show();
+        }
+
+        timeCountInMilliSeconds = time * 60 * 1000;
+    }
+
+
+    private void startCountDownTimer() {
+
+        countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
+            @Override
             public void onTick(long millisUntilFinished) {
-                long millis = millisUntilFinished;
 
-                @SuppressLint("DefaultLocale") String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
-                        TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
-                        TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-                countdownTimerText.setText(hms);//set text
+                textViewTime.setText(hmsTimeFormatter(millisUntilFinished));
+
+                progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
+
             }
 
-            @SuppressLint("SetTextI18n")
+            @Override
             public void onFinish() {
 
-                countdownTimerText.setText("TIME'S UP!!");
-                countDownTimer = null;
-                startTimer.setText(getString(R.string.start_timer));
+                textViewTime.setText(hmsTimeFormatter(timeCountInMilliSeconds));
+
+                setProgressBarValues();
+
+                imageViewReset.setVisibility(View.GONE);
+
+                imageViewStartStop.setImageResource(R.drawable.icon_start);
+
+                editTextMinute.setEnabled(true);
+
+                timerStatus = TimerStatus.STOPPED;
             }
+
         }.start();
+        countDownTimer.start();
+    }
+
+
+    private void stopCountDownTimer() {
+        countDownTimer.cancel();
+    }
+
+
+    private void setProgressBarValues() {
+
+        progressBarCircle.setMax((int) timeCountInMilliSeconds / 1000);
+        progressBarCircle.setProgress((int) timeCountInMilliSeconds / 1000);
+    }
+
+
+
+    private String hmsTimeFormatter(long milliSeconds) {
+
+        @SuppressLint("DefaultLocale") String hms = String.format("%02d:%02d:%02d",
+                TimeUnit.MILLISECONDS.toHours(milliSeconds),
+                TimeUnit.MILLISECONDS.toMinutes(milliSeconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(milliSeconds)),
+                TimeUnit.MILLISECONDS.toSeconds(milliSeconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliSeconds)));
+
+        return hms;
 
     }
-    @Override
+        @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v= inflater.inflate(R.layout.fragment_grapes, container, false);
-        countdownTimerText = (TextView) v.findViewById(R.id.countdownText);
-        minutes = (EditText) v.findViewById(R.id.enterMinutes);
-        startTimer = (Button) v.findViewById(R.id.startTimer);
-        resetTimer = (Button) v.findViewById(R.id.resetTimer);
-
-        setListeners();
+        progressBarCircle = v.findViewById(R.id.progressBarCircle);
+        editTextMinute = v.findViewById(R.id.editTextMinute);
+        textViewTime = v.findViewById(R.id.textViewTime);
+        imageViewReset = v.findViewById(R.id.imageViewReset);
+        imageViewStartStop = v.findViewById(R.id.imageViewStartStop);
+        initListeners();
         return v;
     }
+
 }
+
+
+
+
+
