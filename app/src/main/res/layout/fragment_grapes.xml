@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textViewTime"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="150dp"
         android:gravity="center"
         android:hint="@string/hint_minute"
         android:inputType="number"
@@ -35,7 +35,8 @@
         android:minEms="5"
         android:text="@string/_1"
         android:textColor="@color/colorYellow"
-        android:textColorHint="@color/colorYellow" />
+        android:textColorHint="@color/colorYellow"
+        tools:ignore="Autofill" />
 
     <TextView
         android:id="@+id/textViewTime"
@@ -54,7 +55,8 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:src="@drawable/icon_reset"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/imageViewStartStop"
@@ -63,6 +65,7 @@
         android:layout_below="@+id/progressBarCircle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:src="@drawable/icon_start" />
+        android:src="@drawable/icon_start"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

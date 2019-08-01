@@ -203,8 +203,3 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
     }
 
 }
-
-
-
-
-
