@@ -20,16 +20,11 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
 
     private long timeCountInMilliSeconds = 60000;
-
     private enum TimerStatus {
         STARTED,
         STOPPED
     }
-    public GrapesFragment() {
-    // Required empty public constructor
-     }
     private TimerStatus timerStatus = TimerStatus.STOPPED;
-
     private ProgressBar progressBarCircle;
     private EditText editTextMinute;
     private TextView textViewTime;
@@ -37,31 +32,9 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
     private ImageView imageViewStartStop;
     private CountDownTimer countDownTimer;
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-        // method call to initialize the views
-        initViews();
-        // method call to initialize the listeners
-        initListeners();
-
-
+    public GrapesFragment() {
+        // Required empty public constructor
     }
-
-
-    private void initViews() {
-
-    }
-
-
-    private void initListeners() {
-        imageViewReset.setOnClickListener(this);
-        imageViewStartStop.setOnClickListener(this);
-    }
-
 
     @Override
     public void onClick(View view) {
@@ -198,7 +171,13 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         textViewTime = v.findViewById(R.id.textViewTime);
         imageViewReset = v.findViewById(R.id.imageViewReset);
         imageViewStartStop = v.findViewById(R.id.imageViewStartStop);
-        initListeners();
+
+            imageViewReset.setOnClickListener(this);
+            imageViewStartStop.setOnClickListener(this);
+
+
+
+//        initListeners();
         return v;
     }
 
