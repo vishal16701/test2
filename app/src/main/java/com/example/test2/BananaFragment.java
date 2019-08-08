@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,7 @@ import java.util.Objects;
 
 public class BananaFragment extends Fragment implements View.OnClickListener {
 
-    public BananaFragment() {
-        // Required empty public constructor
-    }
+
 
     TextView textView;
     Button start, pause, reset, lap;
@@ -39,14 +38,12 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-
     }
 
 
     Runnable runnable = new Runnable() {
 
+        @SuppressLint({"DefaultLocale", "SetTextI18n"})
         public void run() {
 
             MillisecondTime = SystemClock.uptimeMillis() - StartTime;
@@ -82,7 +79,6 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
         listView = v.findViewById(R.id.listview1);
 
 
-
         handler = new Handler();
 
         ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
@@ -92,49 +88,70 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
                 ListElementsArrayList);
         listView.setAdapter(adapter);
 
-
-        return v;
-
-    }
-
-    @SuppressLint("SetTextI18n")
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.button:
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
                 StartTime = SystemClock.uptimeMillis();
                 handler.postDelayed(runnable, 0);
+
                 reset.setEnabled(false);
-                break;
 
-            case R.id.button2:
+            }
+        });
+
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 TimeBuff += MillisecondTime;
-                handler.removeCallbacks(runnable);
-                reset.setEnabled(true);
-                break;
 
-            case R.id.button3:
-                MillisecondTime = 0L;
-                StartTime = 0L;
-                TimeBuff = 0L;
-                UpdateTime = 0L;
-                Seconds = 0;
-                Minutes = 0;
-                MilliSeconds = 0;
+                handler.removeCallbacks(runnable);
+
+                reset.setEnabled(true);
+
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                MillisecondTime = 0L ;
+                StartTime = 0L ;
+                TimeBuff = 0L ;
+                UpdateTime = 0L ;
+                Seconds = 0 ;
+                Minutes = 0 ;
+                MilliSeconds = 0 ;
 
                 textView.setText("00:00:00");
+
                 ListElementsArrayList.clear();
 
                 adapter.notifyDataSetChanged();
-                break;
+            }
+        });
 
-            case R.id.button4:
+        lap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
                 ListElementsArrayList.add(textView.getText().toString());
+
                 adapter.notifyDataSetChanged();
-                break;
-        }
+
+            }
+        });
+
+        return v;
+
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

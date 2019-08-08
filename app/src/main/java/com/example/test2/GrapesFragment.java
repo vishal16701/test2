@@ -1,19 +1,28 @@
 package com.example.test2;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.CountDownTimer;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class GrapesFragment extends Fragment implements View.OnClickListener {
@@ -24,26 +33,36 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         STARTED,
         STOPPED
     }
-    private TimerStatus timerStatus = TimerStatus.STOPPED;
-    private ProgressBar progressBarCircle;
-    private EditText editTextMinute;
-    private TextView textViewTime;
-    private ImageView imageViewReset;
-    private ImageView imageViewStartStop;
-    private CountDownTimer countDownTimer;
+    TimerStatus timerStatus = TimerStatus.STOPPED;
+    ProgressBar progressBarCircle;
+    EditText editTextMinute;
+    TextView textViewTime;
+    ImageView imageViewReset;
+    ImageView imageViewStartStop;
+    CountDownTimer countDownTimer;
+    Handler handler;
+    Button lap2;
+    ListView listView;
+    String[] ListElements = new String[]{};
+    List<String> ListElementsArrayList;
+    ArrayAdapter<String> adapter;
 
     public GrapesFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.imageViewReset:
                 reset();
                 break;
             case R.id.imageViewStartStop:
                 startStop();
+                break;
+            case R.id.listview2:
+                ListElementsArrayList.add(textViewTime.getText().toString());
+                adapter.notifyDataSetChanged();
                 break;
         }
     }
@@ -171,9 +190,33 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         textViewTime = v.findViewById(R.id.textViewTime);
         imageViewReset = v.findViewById(R.id.imageViewReset);
         imageViewStartStop = v.findViewById(R.id.imageViewStartStop);
+        lap2 = v.findViewById(R.id.button5);
+        listView = v.findViewById(R.id.listview2);
 
             imageViewReset.setOnClickListener(this);
             imageViewStartStop.setOnClickListener(this);
+
+            handler = new Handler();
+
+            ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
+
+            adapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+                    android.R.layout.simple_list_item_1,
+                    ListElementsArrayList);
+
+            listView.setAdapter(adapter);
+
+
+            lap2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    ListElementsArrayList.add(textViewTime.getText().toString());
+
+                    adapter.notifyDataSetChanged();
+
+                }
+            });
 
 
 

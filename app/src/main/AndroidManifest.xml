@@ -46,5 +46,10 @@
             <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <receiver android:name="com.example.test2.AppleFragment$Alarm_Receiver" />
+
+        <service android:name="com.example.test2.AppleFragment$RingtonePlayingService"
+            android:enabled="true">
+        </service>
     </application>
 </manifest>

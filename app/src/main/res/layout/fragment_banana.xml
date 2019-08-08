@@ -31,6 +31,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="50dp"
+        android:background="#448aff"
         android:id="@+id/button"
         tools:ignore="RtlHardcoded" />
 
@@ -39,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
+        android:background="#448aff"
         android:layout_alignBaseline="@+id/button"
         android:layout_alignBottom="@+id/button"
         android:layout_centerHorizontal="true" />
@@ -49,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/button2"
         android:layout_alignParentRight="true"
+        android:background="#448aff"
         android:layout_alignParentEnd="true"
         android:id="@+id/button3"
         tools:ignore="RtlHardcoded" />
@@ -59,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/button4"
+        android:background="#448aff"
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true" />
 
@@ -66,6 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/button4"
+        android:backgroundTint="#F5FA55"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:id="@+id/listview1"/>

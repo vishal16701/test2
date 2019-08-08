@@ -48,16 +48,16 @@ public class MainActivity extends AppCompatActivity {
     }
     private void addTabs(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new AppleFragment(), "ALARM");
-        adapter.addFrag(new OrangeFragment(), "TIMEZONE");
-        adapter.addFrag(new GrapesFragment(), "TIMER");
-        adapter.addFrag(new BananaFragment(), "STOPWATCH");
+        adapter.addFrag(new AppleFragment());
+        adapter.addFrag(new OrangeFragment());
+        adapter.addFrag(new GrapesFragment());
+        adapter.addFrag(new BananaFragment());
         viewPager.setAdapter(adapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+
 
         ViewPagerAdapter(FragmentManager manager) {
             super(manager);
@@ -73,15 +73,11 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        void addFrag(Fragment fragment, String title) {
+        void addFrag(Fragment fragment) {
             mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
     }
 
 
