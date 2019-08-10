@@ -173,7 +173,7 @@ public class AppleFragment extends Fragment implements AdapterView.OnItemSelecte
 
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_settings) {
             return true;
         }
 
@@ -294,7 +294,7 @@ public class AppleFragment extends Fragment implements AdapterView.OnItemSelecte
                 if (sound_choice == 0) {
 
                     int minimum_number = 1;
-                    int maximum_number = 8;
+                    int maximum_number = 3;
 
                     Random random_number = new Random();
                     int number = random_number.nextInt(maximum_number + minimum_number);
@@ -315,28 +315,8 @@ public class AppleFragment extends Fragment implements AdapterView.OnItemSelecte
                         media_song = MediaPlayer.create(this, R.raw.vishal_3);
                         media_song.start();
                     }
-                    else if (number == 4) {
-                        media_song = MediaPlayer.create(this, R.raw.vishal_4);
-                        media_song.start();
-                    }
-                    else if (number == 5) {
-                        media_song = MediaPlayer.create(this, R.raw.vishal_5);
-                        media_song.start();
-                    }
-                    else if (number == 6) {
-                        media_song = MediaPlayer.create(this, R.raw.vishal_6);
-                        media_song.start();
-                    }
-                    else if (number == 7) {
-                        media_song = MediaPlayer.create(this, R.raw.vishal_7);
-                        media_song.start();
-                    }
-                    else if (number == 8) {
-                        media_song = MediaPlayer.create(this, R.raw.vishal_8);
-                        media_song.start();
-                    }
                     else  {
-                        media_song = MediaPlayer.create(this, R.raw.vishal_9);
+                        media_song = MediaPlayer.create(this, R.raw.vishal_4);
                         media_song.start();
                     }
 
@@ -358,28 +338,8 @@ public class AppleFragment extends Fragment implements AdapterView.OnItemSelecte
                     media_song = MediaPlayer.create(this, R.raw.vishal_3);
                     media_song.start();
                 }
-                else if (sound_choice == 4) {
-                    media_song = MediaPlayer.create(this, R.raw.vishal_4);
-                    media_song.start();
-                }
-                else if (sound_choice == 5) {
-                    media_song = MediaPlayer.create(this, R.raw.vishal_5);
-                    media_song.start();
-                }
-                else if (sound_choice == 6) {
-                    media_song = MediaPlayer.create(this, R.raw.vishal_6);
-                    media_song.start();
-                }
-                else if (sound_choice == 7) {
-                    media_song = MediaPlayer.create(this, R.raw.vishal_7);
-                    media_song.start();
-                }
-                else if (sound_choice == 8) {
-                    media_song = MediaPlayer.create(this, R.raw.vishal_8);
-                    media_song.start();
-                }
                 else  {
-                    media_song = MediaPlayer.create(this, R.raw.vishal_9);
+                    media_song = MediaPlayer.create(this, R.raw.vishal_4);
                     media_song.start();
                 }
 

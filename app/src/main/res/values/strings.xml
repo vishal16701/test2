@@ -36,5 +36,10 @@
     <string name="unset_alarm">unset alarm</string>
     <string name="set_the_alarm_clock">set the alarm clock</string>
     <string name="settings">settings</string>
+    <string name="Timer_Started" />
+    <string name="Timer_Stopped" />
+    <string name="current">:: Current Time ::</string>
+    <string name="vishal" />
+    <string name="channel_description" />
 </resources>
 

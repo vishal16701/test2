@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +95,7 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
                 handler.postDelayed(runnable, 0);
 
                 reset.setEnabled(false);
+                start.setEnabled(false);
 
             }
         });
@@ -109,6 +109,7 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
                 handler.removeCallbacks(runnable);
 
                 reset.setEnabled(true);
+                start.setEnabled(true);
 
             }
         });
@@ -128,7 +129,6 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
                 textView.setText("00:00:00");
 
                 ListElementsArrayList.clear();
-
                 adapter.notifyDataSetChanged();
             }
         });

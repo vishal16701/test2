@@ -1,7 +1,7 @@
 package com.example.test2;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -13,7 +13,6 @@ import android.os.CountDownTimer;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +28,8 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
 
     private long timeCountInMilliSeconds = 60000;
+    MediaPlayer mediaPlayer;
+    Button startpause,reset2;
     private enum TimerStatus {
         STARTED,
         STOPPED
@@ -37,8 +38,6 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
     ProgressBar progressBarCircle;
     EditText editTextMinute;
     TextView textViewTime;
-    ImageView imageViewReset;
-    ImageView imageViewStartStop;
     CountDownTimer countDownTimer;
     Handler handler;
     Button lap2;
@@ -51,16 +50,17 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.imageViewReset:
-                reset();
-                break;
-            case R.id.imageViewStartStop:
+            case R.id.startpause:
                 startStop();
                 break;
-            case R.id.listview2:
+            case R.id.reset2:
+                reset();
+                break;
+            case R.id.button5:
                 ListElementsArrayList.add(textViewTime.getText().toString());
                 adapter.notifyDataSetChanged();
                 break;
@@ -68,10 +68,31 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
     }
 
 
+
     private void reset() {
-        stopCountDownTimer();
-        startCountDownTimer();
+        if (timerStatus == TimerStatus.STOPPED) {
+            editTextMinute.setEnabled(true);
+            ListElementsArrayList.clear();
+            textViewTime.setText("00:01:00");
+            progressBarCircle.setMax((int) timeCountInMilliSeconds / 1000);
+            progressBarCircle.setProgress((int) timeCountInMilliSeconds / 1000);
+        }
+
+        else {
+            stopCountDownTimer();
+            textViewTime.setText("00:01:00");
+            progressBarCircle.setMax((int) timeCountInMilliSeconds / 1000);
+            progressBarCircle.setProgress((int) timeCountInMilliSeconds / 1000);
+            set_text("Start");
+            editTextMinute.setEnabled(true);
+            ListElementsArrayList.clear();
+        }
+
     }
+    private void set_text(String output) {
+        startpause.setText(output);
+    }
+
 
 
 
@@ -83,9 +104,7 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
             setProgressBarValues();
 
-            imageViewReset.setVisibility(View.VISIBLE);
-
-            imageViewStartStop.setImageResource(R.drawable.icon_stop);
+            set_text("Pause");
 
             editTextMinute.setEnabled(false);
 
@@ -96,9 +115,8 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         } else {
 
 
-            imageViewReset.setVisibility(View.GONE);
 
-            imageViewStartStop.setImageResource(R.drawable.icon_start);
+            set_text("start");
 
             editTextMinute.setEnabled(true);
 
@@ -134,6 +152,7 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
                 progressBarCircle.setProgress((int) (millisUntilFinished / 1000));
 
+
             }
 
             @Override
@@ -143,9 +162,11 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
                 setProgressBarValues();
 
-                imageViewReset.setVisibility(View.GONE);
+                set_text("Start");
 
-                imageViewStartStop.setImageResource(R.drawable.icon_start);
+
+                mediaPlayer = MediaPlayer.create(getContext(), R.raw.vishal_1);
+                mediaPlayer.start();
 
                 editTextMinute.setEnabled(true);
 
@@ -159,8 +180,10 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
     private void stopCountDownTimer() {
         countDownTimer.cancel();
-    }
+        timerStatus= TimerStatus.STOPPED;
 
+
+    }
 
     private void setProgressBarValues() {
 
@@ -188,19 +211,20 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         progressBarCircle = v.findViewById(R.id.progressBarCircle);
         editTextMinute = v.findViewById(R.id.editTextMinute);
         textViewTime = v.findViewById(R.id.textViewTime);
-        imageViewReset = v.findViewById(R.id.imageViewReset);
-        imageViewStartStop = v.findViewById(R.id.imageViewStartStop);
+        startpause = v.findViewById(R.id.startpause);
+        reset2 = v.findViewById(R.id.reset2);
+
         lap2 = v.findViewById(R.id.button5);
         listView = v.findViewById(R.id.listview2);
 
-            imageViewReset.setOnClickListener(this);
-            imageViewStartStop.setOnClickListener(this);
+            reset2.setOnClickListener(this);
+            startpause.setOnClickListener(this);
 
             handler = new Handler();
 
-            ListElementsArrayList = new ArrayList<String>(Arrays.asList(ListElements));
+            ListElementsArrayList = new ArrayList<>(Arrays.asList(ListElements));
 
-            adapter = new ArrayAdapter<String>(Objects.requireNonNull(getContext()),
+            adapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
                     android.R.layout.simple_list_item_1,
                     ListElementsArrayList);
 
@@ -213,7 +237,10 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
                     ListElementsArrayList.add(textViewTime.getText().toString());
 
+
                     adapter.notifyDataSetChanged();
+
+
 
                 }
             });

@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,17 +17,17 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private int[] tabIcons = {
-            R.drawable.ic_alarm_add,
-            R.drawable.ic_repeat,
-            R.drawable.ic_timer,
-            R.drawable.ic_stopwatch
+            R.drawable.alarm,
+            R.drawable.time,
+            R.drawable.timer,
+            R.drawable.stopwatch
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -79,6 +78,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
 }
