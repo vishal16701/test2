@@ -40,6 +40,7 @@ public class BananaFragment extends Fragment implements View.OnClickListener {
     }
 
 
+
     Runnable runnable = new Runnable() {
 
         @SuppressLint({"DefaultLocale", "SetTextI18n"})

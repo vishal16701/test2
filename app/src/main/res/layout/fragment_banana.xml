@@ -18,7 +18,6 @@
         android:layout_marginTop="50dp"
         android:id="@+id/textView"
         android:textSize="50sp"
-        android:textStyle="bold"
         android:textColor="#000000"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -31,6 +30,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="50dp"
+        android:textSize="15sp"
         android:background="#448aff"
         android:id="@+id/button"
         tools:ignore="RtlHardcoded" />
@@ -41,6 +41,7 @@
         android:layout_height="45dp"
         android:id="@+id/button2"
         android:background="#448aff"
+        android:textSize="15sp"
         android:layout_alignBaseline="@+id/button"
         android:layout_alignBottom="@+id/button"
         android:layout_centerHorizontal="true" />
@@ -52,6 +53,7 @@
         android:layout_alignTop="@+id/button2"
         android:layout_alignParentRight="true"
         android:background="#448aff"
+        android:textSize="15sp"
         android:layout_alignParentEnd="true"
         android:id="@+id/button3"
         tools:ignore="RtlHardcoded" />
@@ -61,6 +63,7 @@
         android:layout_width="fill_parent"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
+        android:textSize="15sp"
         android:id="@+id/button4"
         android:background="#448aff"
         android:layout_below="@+id/button"
@@ -71,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/button4"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/listview1"/>
 
 </RelativeLayout>

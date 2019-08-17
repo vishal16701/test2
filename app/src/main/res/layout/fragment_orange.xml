@@ -22,7 +22,6 @@
         android:layout_width="wrap_content"
         android:id="@+id/txtGMTTime"
         android:textSize="30sp"
-        android:textStyle="bold"
         android:textColor="#000000"
         android:text="@string/current"/>
 
@@ -36,13 +35,40 @@
 
 </LinearLayout>
 
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <Spinner
         android:id="@+id/availableID"
-        android:layout_marginTop="25dp"
-        android:layout_width="fill_parent"
-        android:backgroundTint="#D0EEEE"
-        android:layout_height="50dp" />
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/xyz"
+        android:textAlignment="center" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="20dp"
+        android:layout_height="26dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="303dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="83dp"
+        android:src="@drawable/abc" />
+
+
+
+</RelativeLayout>
 
     <LinearLayout
         android:orientation="vertical"
@@ -55,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textSize="20sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:textColor="#000000"
         android:id="@+id/timezone"/>
 
@@ -64,7 +90,6 @@
         android:layout_width="wrap_content"
         android:textSize="20sp"
         android:textColor="#448aff"
-        android:layout_marginTop="5dp"
         android:id="@+id/txtTimeZoneTime"/>
 
 </LinearLayout>

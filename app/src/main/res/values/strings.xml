@@ -40,6 +40,24 @@
     <string name="Timer_Stopped" />
     <string name="current">:: Current Time ::</string>
     <string name="vishal" />
+    <string name="stop_alarm">Stop Alarm</string>
+    <string name="start_alarm">Start Alarm</string>
+    <string name="edit_text_hint">Input your Alarm time</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+    <string name="label">Select your Alarm input type from below :</string>
     <string name="channel_description" />
+    <string name="action_settings">action settings</string>
+    <string name="did_you_set_the_alarm">Did you set the alarm?</string>
+    <string name="unset">UNSET</string>
+    <string name="set">SET</string>
+
+    <string-array name="array">
+        <item>Tune 1</item>
+        <item>Tune 2</item>
+        <item>Tune 3</item>
+        <item>Tune 4</item>
+    </string-array>
 </resources>
 

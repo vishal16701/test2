@@ -54,7 +54,8 @@
         android:layout_below="@+id/progressBarCircle"
         android:layout_alignParentStart="true"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
         android:background="#448aff"
         android:text="Start" />
 
@@ -64,18 +65,20 @@
         android:layout_height="45dp"
         android:layout_below="@+id/progressBarCircle"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
         android:layout_marginEnd="50dp"
         android:background="#448aff"
-        android:text="Reset" />
+        android:text="@string/reset" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="375dp"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/startpause"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
         android:background="#448aff"
         android:text="@string/save_lap" />
 
@@ -86,7 +89,7 @@
         android:layout_below="@+id/button5"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="0dp" />
 
 </RelativeLayout>

@@ -115,7 +115,6 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         } else {
 
 
-
             set_text("start");
 
             editTextMinute.setEnabled(true);
@@ -165,7 +164,7 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
                 set_text("Start");
 
 
-                mediaPlayer = MediaPlayer.create(getContext(), R.raw.vishal_1);
+//                mediaPlayer = MediaPlayer.create(getContext(), R.raw.vishal_1);
                 mediaPlayer.start();
 
                 editTextMinute.setEnabled(true);
@@ -213,8 +212,11 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
         textViewTime = v.findViewById(R.id.textViewTime);
         startpause = v.findViewById(R.id.startpause);
         reset2 = v.findViewById(R.id.reset2);
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.vishal_5);
 
-        lap2 = v.findViewById(R.id.button5);
+
+            lap2 = v.findViewById(R.id.button5);
         listView = v.findViewById(R.id.listview2);
 
             reset2.setOnClickListener(this);
@@ -237,14 +239,10 @@ public class GrapesFragment extends Fragment implements View.OnClickListener {
 
                     ListElementsArrayList.add(textViewTime.getText().toString());
 
-
                     adapter.notifyDataSetChanged();
-
-
 
                 }
             });
-
 
 
 //        initListeners();

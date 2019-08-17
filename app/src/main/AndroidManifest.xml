@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.test2">
 
-    <uses-permission android:name="android.permission.SET_ALARM" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="me.jfenn.alarmio.permission.ALARM" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/alarm4"
-        android:label="Clock"
+        android:label="O'Clock"
         android:roundIcon="@drawable/alarm4"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".MainActivity"
-            android:label="Clock"
+            android:label="O'Clock"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -46,10 +41,11 @@
             <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <receiver android:name="com.example.test2.AppleFragment$Alarm_Receiver" />
 
-        <service android:name="com.example.test2.AppleFragment$RingtonePlayingService"
-            android:enabled="true">
-        </service>
-    </application>
+        <receiver android:name=".AppleFragment$AlarmReceiver"
+            android:enabled="true"/>
+
+        <service android:name=".AppleFragment$RingtonePlayingService"
+            android:enabled="true"/>
+         </application>
 </manifest>
